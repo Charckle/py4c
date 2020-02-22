@@ -1,16 +1,4 @@
 #include<Wire.h>    
-// Arduino pin numbers
-const int X_pin = 2; // digital pin connected to switch output
-const int A_pin = 2; // digital pin connected to switch output
-const int B_pin = 2; // digital pin connected to switch output
-const int Y_pin = 2; // digital pin connected to switch output
-const int RB_pin = 2; // digital pin connected to switch output
-const int LB_pin = 2; // digital pin connected to switch output
-const int start_pin = 2; // digital pin connected to switch output
-const int menu_pin = 2; // digital pin connected to switch output
-
-const int X_ax_pin = A0; // analog pin connected to X output
-const int Y_ax_pin = A1; // analog pin connected to Y output
 
 void setup() {
   pinMode(2,INPUT_PULLUP)
