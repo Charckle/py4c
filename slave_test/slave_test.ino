@@ -9,6 +9,9 @@
 
 // This example code is in the public domain.
 
+const int X_ax_pin = A0; // analog pin connected to X output
+const int Y_ax_pin = A1; // analog pin connected to Y output
+
 
 #include <Wire.h>
 
@@ -24,6 +27,10 @@ void loop() {
 // function that executes whenever data is requested by master
 // this function is registered as an event, see setup()
 void requestEvent() {
-  Wire.write("hello "); // respond with message of 6 bytes
+  int n= analogRead(Y_ax_pin);   
+  n=map(n, 0, 1023,0 , 255);
+  n= lowByte(n);  
+  
+  Wire.write(n); // respond with message of 6 bytes
   // as expected by master
 }

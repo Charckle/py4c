@@ -6,11 +6,13 @@ void setup() {
 }
 
 void loop() {
-  Wire.requestFrom(101, 6);    // request 6 bytes from slave device #101
+  Wire.requestFrom(101, 1);    // request 6 bytes from slave device #101
 
   while (Wire.available()) { // slave may send less than requested
-    char c = Wire.read(); // receive a byte as character
-    Serial.print(c);         // print the character
+    int c = Wire.read(); // receive a byte as characterSerial.print(c);       // print the character
+    Serial.print("X axis is: ");       // print the character
+    Serial.print(c);       // print the character
+    Serial.print("\n");
   }
 
   delay(500);

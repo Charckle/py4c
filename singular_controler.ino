@@ -36,9 +36,9 @@ void requestEvent(){
 
   int n= analogRead(X_ax_pin);   
   n=map(n,0,1023,0,255);
-  myData[0] = (unsigned char) n;     
+  myData[0] = lowByte(n);     
 
-  n= analogRead(Y_ax_pin);   
+  int n= analogRead(Y_ax_pin);   
   n=map(n, 0, 1023,0 , 255);
   myData[1]= lowByte(n);     
 
