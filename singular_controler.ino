@@ -32,22 +32,31 @@ void setup() {
  }
 
 void requestEvent(){
-  int myData[9]  //sends 7 pieces of data
+  byte myData[4];  //sends 7 pieces of data
 
-  myData[0] = analogRead(X_ax_pin);     
-  myData[1]= analogRead(Y_ax_pin);     
+  int n= analogRead(X_ax_pin);   
+  n=map(n,0,1023,0,255);
+  myData[0] = (unsigned char) n;     
 
-  myData[2]= digitalRead(X_pin);     
-  myData[3]= digitalRead(A_pin);     
-  myData[4]= digitalRead(B_pin);     
-  myData[5]= digitalRead(Y_pin);     
-  myData[6]= digitalRead(RB_pin);     
-  myData[7]= digitalRead(LB_pin);     
-  myData[8]= digitalRead(start_pin);     
-  myData[9]= digitalRead(menu_pin);     
+  n= analogRead(Y_ax_pin);   
+  n=map(n, 0, 1023,0 , 255);
+  myData[1]= lowByte(n);     
 
-  byte SlaveSend = map(myData,0,1023,0,127);   
-  Wire.write(SlaveSend);  
+  unsigned char m;
+  
+  bitWrite(m, 0, digitalRead(X_pin));
+  bitWrite(m, 0, digitalRead(A_pin));
+  bitWrite(m, 0, digitalRead(B_pin));
+  bitWrite(m, 0, digitalRead(Y_pin));
+  bitWrite(m, 0, digitalRead(RB_pin));
+  bitWrite(m, 0, digitalRead(LB_pin));
+  bitWrite(m, 0, digitalRead(start_pin));
+  bitWrite(m, 0, digitalRead(menu_pin));   
+
+  myData[2]= m;     
+  myData[3]= 0;   //one free byte for the future
+
+  Wire.write(myData, 4); 
 }
 
 void receiveEvent(int infoGot){
